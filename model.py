@@ -11,6 +11,7 @@ import random
 
 lines = []
 index = 0
+# read csv file
 with open('data/driving_log.csv') as csvFile:
     reader = csv.reader(csvFile)
     for i in reader:
@@ -19,6 +20,7 @@ with open('data/driving_log.csv') as csvFile:
         index =1
 images = []
 measures = []
+# load dataset with images from left center or right camera along with some flipped images
 for line in lines:
     select = random.choice([0,1,2])
     src = line[select]
@@ -33,6 +35,7 @@ for line in lines:
         angle = float(line[3])
     images.append(image)
     measures.append(angle)
+    # Load flipped images with a prob of .5
     if random.random() > 0.5:
         images.append(cv2.flip(image,1))
         measures.append(angle*-1.0)
@@ -42,6 +45,7 @@ y_train = np.array(measures)
 
 print(X_train.shape,y_train.shape)
 
+#Model - > Nvidia Modified
 model = Sequential()
 model.add(Lambda(lambda x: x / 127.5 - 1.0, input_shape=(160,320,3)))
 model.add(Cropping2D(cropping=((70,25),(0,0))))
