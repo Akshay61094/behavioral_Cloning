@@ -22,11 +22,13 @@ images = []
 measures = []
 # load dataset with images from left center or right camera along with some flipped images
 for line in lines:
+    #select image randomly from left center and right camera
     select = random.choice([0,1,2])
     src = line[select]
     filename = src.split('/')[-1]
     curr_path = 'data/IMG/' + filename
     image = cv2.imread(curr_path)
+    #adding corrective measure of +0.25 for left and -0.25 for right image's angle.
     if select == 1:
         angle = float(line[3]) +0.25
     elif select == 2:
