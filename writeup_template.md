@@ -53,7 +53,7 @@ The model.py file in the submission contains the code of the convolation neural 
 #### 1. An appropriate model architecture has been employed
 
 My model is inspired from the Nvidia's End to End Learning for Self-Driving Cars Model.
-The modified model had has 5 convolution and 3 dense layers, Filters of 5*5 and 3*# have been used in convolution layers with depth ranging from 24 to 64.
+The modified model had has 5 convolution and 3 dense layers, Filters of 5X5 and 3X3 have been used in convolution layers with depth ranging from 24 to 64.
 The model uses Relu activation technique to introduce non-linearity in the model. The data is normalised using Keras lambda layer and cropped to appropriate segment using Cropping layer.
 
 #### 2. Attempts to reduce overfitting in the model
@@ -67,9 +67,8 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+For training I have used Udacity's Sample data which is data of center lane driving along with images from left and right camera's.
 
-For details about how I created the training data, see the next section. 
 
 ### Model Architecture and Training Strategy
 
@@ -87,36 +86,33 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes 
+Layer 0 : Normalization to range -1 to 1.
+Layer 1 : Cropping with top crop as 70 and bottom crop as 25
+Layer 2 : Convolution with filter shape (24, 5, 5) ,strides (2, 2), valid padding and with relu activation
+Layer 3 : Convolution with filter shape (36, 5, 5) ,strides (2, 2), valid padding and with relu activation
+Layer 4 : Convolution with filter shape (48, 5, 5) ,strides (2, 2), valid padding and with relu activation
+Layer 5 : Convolution with filter shape (64, 5, 5) , valid padding and with relu activation
+Layer 6 : Convolution with filter shape (64, 5, 5) , valid padding and with relu activation
+Layer 7 : Flatten Layer
+Layer 8 : Fully Connected with 512 outputs, relu activation and dropout of 0.5
+Layer 9 : Fully Connected with 100 outputs, relu activation and dropout of 0.3
+Layer 10 : Fully Connected with 1 outputs and dropout
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Here is a visualization of the architecture.
 
 ![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+For training Udacity sample training dataset is used which is data that contain center lane driving. Here is an example of the image with center lane driving.
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+As the First track in simulation is left biased so to prevent the network from being biased towards left angle, I also flipped images and angles so that we can maintain general data for both left and right angle. For example, here is an image that has then been flipped:
 
 ![alt text][image6]
-![alt text][image7]
 
-Etc ....
+I randomly shuffled the data set and put 20% of the data into a validation set. 
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as after 3 epochs the loss was low and moreover the validation loss saturated and their was not much difference between validation and training dataset. I used an adam optimizer so that manually training the learning rate wasn't necessary.
