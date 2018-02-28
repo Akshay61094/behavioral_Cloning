@@ -97,7 +97,7 @@ Layer 5 : Convolution with filter shape (64, 5, 5) , valid padding and with relu
 
 Layer 6 : Convolution with filter shape (64, 5, 5) , valid padding and with relu activation
 
-Layer 7 : Flatten Layer
+Layer 7 : Flatten Layer with 2112 outputs
 
 Layer 8 : Fully Connected with 512 outputs, relu activation and dropout of 0.5
 
