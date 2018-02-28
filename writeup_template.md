@@ -16,13 +16,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./writupimages/modelparam.PNG "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./modelparam.PNG "Model Visualization"
+[image2]: ./center.PNG "Center Driving Image"
+[image3]: ./center_flip.PNG "Center Flip Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -105,13 +101,13 @@ Here is a visualization of the architecture.
 
 #### 3. Creation of the Training Set & Training Process
 
-For training Udacity sample training dataset is used which is data that contain center lane driving. Here is an example of the image with center lane driving.
+For training Udacity sample training dataset is used which has data of contain center lane driving. Here is an example of the image with center lane driving.
 
 ![alt text][image2]
 
 As the First track in simulation is left biased so to prevent the network from being biased towards left angle, I also flipped images and angles so that we can maintain general data for both left and right angle. For example, here is an image that has then been flipped:
 
-![alt text][image6]
+![alt text][image3]
 
 I randomly shuffled the data set and put 20% of the data into a validation set. 
 
