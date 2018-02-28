@@ -42,7 +42,7 @@ python drive.py model.h5
 
 #### 3. Submission code is usable and readable
 
-The model.py file in the submission contains the code of the convolation neural network used for training purpose. It shows how the model was trained and validated on the dataset. The file contains comments that gives insights to different segments of the code. 
+The model.py file in the submission contains the code of the convolution neural network used for training purpose. It shows how the model was trained and validated on the dataset. The file contains comments that gives insights to different segments of the code. 
 
 ### Model Architecture and Training Strategy
 
@@ -59,11 +59,11 @@ The model was trained and validated on different data sets to ensure that the mo
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 64).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 64). Ihave used batch size of 32.
 
 #### 4. Appropriate training data
 
-For training I have used Udacity's Sample data which is data of center lane driving along with images from left and right camera's.
+For training I have used Udacity's Sample data Which has different sets of driving data along with left and right camera images.
 
 
 ### Model Architecture and Training Strategy
@@ -74,9 +74,9 @@ I approached towards solution by taking the Nvidia's End to End Learning for Sel
 
 After training on the above model i saw that the model was overfitting,it was resolved by adding Dropout layers after each dense layer of the model.
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle was moving towards the left side more i.e. network was getting biased to the left side , to resolve this i added more images in dataet by flipping thealready available images with a probability of 0.5
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle was moving towards the left side more i.e. network was getting biased to the left side , to resolve this i added more images in dataset by flipping the already available images with a probability of 0.5 .
 
-Also their were situations where the vehicle was not able to recover from the sides, to tackle this, while adding the image to dataset the image was randomly selected from the 3 available angles i.e left, right or center with the left and right camera's steering angle adjusted by corrective measure of +0.25/-0.25. 
+Also their were situations where the vehicle was not able to recover from the sides, to tackle this, while adding the image from dataset to training data image was randomly selected from the 3 available angles i.e left, right or center with the left and right camera's steering angle adjusted by corrective measure of +0.25/-0.25. 
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -84,15 +84,25 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes 
 Layer 0 : Normalization to range -1 to 1.
+
 Layer 1 : Cropping with top crop as 70 and bottom crop as 25
+
 Layer 2 : Convolution with filter shape (24, 5, 5) ,strides (2, 2), valid padding and with relu activation
+
 Layer 3 : Convolution with filter shape (36, 5, 5) ,strides (2, 2), valid padding and with relu activation
+
 Layer 4 : Convolution with filter shape (48, 5, 5) ,strides (2, 2), valid padding and with relu activation
+
 Layer 5 : Convolution with filter shape (64, 5, 5) , valid padding and with relu activation
+
 Layer 6 : Convolution with filter shape (64, 5, 5) , valid padding and with relu activation
+
 Layer 7 : Flatten Layer
+
 Layer 8 : Fully Connected with 512 outputs, relu activation and dropout of 0.5
+
 Layer 9 : Fully Connected with 100 outputs, relu activation and dropout of 0.3
+
 Layer 10 : Fully Connected with 1 outputs and dropout
 
 Here is a visualization of the architecture.
@@ -101,7 +111,7 @@ Here is a visualization of the architecture.
 
 #### 3. Creation of the Training Set & Training Process
 
-For training Udacity sample training dataset is used which has data of contain center lane driving. Here is an example of the image with center lane driving.
+For training Udacity sample training dataset is used which has data of center lane driving. Here is an example of the image with center lane driving.
 
 ![alt text][image2]
 
